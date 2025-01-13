@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Reservely.API\Reservely.API.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Reserverly.Application\Reserverly.Application.csproj" />
   </ItemGroup>
 
 </Project>
