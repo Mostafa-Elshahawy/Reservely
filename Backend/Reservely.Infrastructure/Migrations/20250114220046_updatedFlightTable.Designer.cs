@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Reservely.Infrastructure.ApplicationContext;
 
@@ -11,9 +12,11 @@ using Reservely.Infrastructure.ApplicationContext;
 namespace Reservely.Infrastructure.Migrations
 {
     [DbContext(typeof(ReservelyDBContext))]
-    partial class ReservelyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250114220046_updatedFlightTable")]
+    partial class updatedFlightTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,40 +158,6 @@ namespace Reservely.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Reserverly.Domain.Entities.Airport", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Gates")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Airports");
-                });
-
             modelBuilder.Entity("Reserverly.Domain.Entities.Flight", b =>
                 {
                     b.Property<int>("Id")
@@ -201,14 +170,9 @@ namespace Reservely.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ArrivalAirportId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ArrivalGate")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ArrivalLounge")
-                        .HasColumnType("int");
+                    b.Property<string>("Arrival")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ArrivalTime")
                         .HasColumnType("datetime2");
@@ -216,20 +180,12 @@ namespace Reservely.Infrastructure.Migrations
                     b.Property<int>("AvailableSeats")
                         .HasColumnType("int");
 
-                    b.Property<int>("ClassId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DepartureAirportId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DepartureGate")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DepartureLounge")
-                        .HasColumnType("int");
+                    b.Property<string>("Departure")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DepartureTime")
                         .HasColumnType("datetime2");
@@ -238,44 +194,15 @@ namespace Reservely.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArrivalAirportId");
-
-                    b.HasIndex("ClassId");
-
-                    b.HasIndex("DepartureAirportId");
-
-                    b.ToTable("Flights");
-                });
-
-            modelBuilder.Entity("Reserverly.Domain.Entities.FlightClass", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18, 2)");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("FlightClasses");
+                    b.ToTable("Flights");
                 });
 
             modelBuilder.Entity("Reserverly.Domain.Entities.Reservation", b =>
@@ -432,33 +359,6 @@ namespace Reservely.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Reserverly.Domain.Entities.Flight", b =>
-                {
-                    b.HasOne("Reserverly.Domain.Entities.Airport", "ArrivalAirport")
-                        .WithMany()
-                        .HasForeignKey("ArrivalAirportId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Reserverly.Domain.Entities.FlightClass", "Class")
-                        .WithMany()
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Reserverly.Domain.Entities.Airport", "DepartureAirport")
-                        .WithMany()
-                        .HasForeignKey("DepartureAirportId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ArrivalAirport");
-
-                    b.Navigation("Class");
-
-                    b.Navigation("DepartureAirport");
                 });
 
             modelBuilder.Entity("Reserverly.Domain.Entities.Reservation", b =>

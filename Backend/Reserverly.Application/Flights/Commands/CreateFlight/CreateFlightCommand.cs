@@ -1,8 +1,9 @@
-﻿namespace Reserverly.Domain.Entities;
+﻿using MediatR;
 
-public class Flight 
+namespace Reserverly.Application.Flights.Commands.CreateFlight;
+
+public class CreateFlightCommand : IRequest<int>
 {
-    public int Id { get; set; }
     public string Airline { get; set; } = default!;
     public string FlightNumber { get; set; } = default!;
     public int DepartureLounge { get; set; } = default!;
@@ -11,12 +12,12 @@ public class Flight
     public DateTime ArrivalTime { get; set; }
     public int AvailableSeats { get; set; }
     public int DepartureAirportId { get; set; }
-    public int ArrivalAirportId { get; set; } 
+    public int ArrivalAirportId { get; set; }
     public int DepartureGate { get; set; }
     public int ArrivalGate { get; set; }
-    public Airport DepartureAirport { get; set; } = default!;
-    public Airport ArrivalAirport { get; set; } = default!;
-    public FlightClass Class { get; set;} = default!;
+    public string DepartureAirport { get; set; } = default!;
+    public string ArrivalAirport { get; set; } = default!;
+    public string Class { get; set; } = default!;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; set; }
 }

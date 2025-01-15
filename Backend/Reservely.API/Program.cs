@@ -1,4 +1,6 @@
+using Reservely.API.Extensions;
 using Reservely.Infrastructure.Extensions;
+using Reserverly.Application.Extensions;
 namespace Reservely.API;
 
 public class Program
@@ -11,6 +13,8 @@ public class Program
 
         builder.Services.AddOpenApi();
 
+        builder.addPresentation();
+        builder.Services.AddApplication();
         builder.Services.AddInfrastructure(builder.Configuration);
 
         var app = builder.Build();

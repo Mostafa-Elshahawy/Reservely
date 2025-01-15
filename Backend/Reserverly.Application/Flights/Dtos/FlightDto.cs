@@ -1,6 +1,6 @@
-﻿namespace Reserverly.Domain.Entities;
+﻿namespace Reserverly.Application.Flights.Dtos;
 
-public class Flight 
+public class FlightDto
 {
     public int Id { get; set; }
     public string Airline { get; set; } = default!;
@@ -11,12 +11,12 @@ public class Flight
     public DateTime ArrivalTime { get; set; }
     public int AvailableSeats { get; set; }
     public int DepartureAirportId { get; set; }
-    public int ArrivalAirportId { get; set; } 
+    public int ArrivalAirportId { get; set; }
     public int DepartureGate { get; set; }
     public int ArrivalGate { get; set; }
-    public Airport DepartureAirport { get; set; } = default!;
-    public Airport ArrivalAirport { get; set; } = default!;
-    public FlightClass Class { get; set;} = default!;
+    public string DepartureAirport { get; set; } = default!;
+    public string ArrivalAirport { get; set; } = default!;
+    public string Class { get; set; } = default!;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; set; }
 }
