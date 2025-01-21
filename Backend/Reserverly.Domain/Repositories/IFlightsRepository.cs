@@ -9,4 +9,6 @@ public interface IFlightsRepository
     Task<IEnumerable<Flight>> GetAll();
     Task Update(Flight flight);
     Task Delete(Flight flight);
+
+    Task SaveChanges();
 }

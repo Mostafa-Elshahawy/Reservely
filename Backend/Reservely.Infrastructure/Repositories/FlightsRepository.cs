@@ -2,7 +2,6 @@
 using Reservely.Infrastructure.ApplicationContext;
 using Reserverly.Domain.Entities;
 using Reserverly.Domain.Repositories;
-using System.Linq.Expressions;
 
 namespace Reservely.Infrastructure.Repositories;
 
@@ -36,4 +35,7 @@ internal class FlightsRepository(ReservelyDBContext dbContext) : IFlightsReposit
         dbContext.Flights.Remove(flight);
         await dbContext.SaveChangesAsync();
     }
+
+    public Task SaveChanges() => dbContext.SaveChangesAsync();
 }
+

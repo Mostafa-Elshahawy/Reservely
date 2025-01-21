@@ -17,7 +17,7 @@ namespace Reservely.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.0")
+                .HasAnnotation("ProductVersion", "9.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -186,7 +186,7 @@ namespace Reservely.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Airports");
+                    b.ToTable("Airports", (string)null);
                 });
 
             modelBuilder.Entity("Reserverly.Domain.Entities.Flight", b =>
@@ -249,7 +249,7 @@ namespace Reservely.Infrastructure.Migrations
 
                     b.HasIndex("DepartureAirportId");
 
-                    b.ToTable("Flights");
+                    b.ToTable("Flights", (string)null);
                 });
 
             modelBuilder.Entity("Reserverly.Domain.Entities.FlightClass", b =>
@@ -275,7 +275,7 @@ namespace Reservely.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FlightClasses");
+                    b.ToTable("FlightClasses", (string)null);
                 });
 
             modelBuilder.Entity("Reserverly.Domain.Entities.Reservation", b =>
@@ -315,7 +315,7 @@ namespace Reservely.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reservations");
+                    b.ToTable("Reservations", (string)null);
                 });
 
             modelBuilder.Entity("Reserverly.Domain.Entities.User", b =>

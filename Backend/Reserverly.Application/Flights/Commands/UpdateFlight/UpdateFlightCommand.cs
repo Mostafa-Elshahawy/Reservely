@@ -4,6 +4,7 @@ namespace Reserverly.Application.Flights.Commands.UpdateFlight;
 
 public class UpdateFlightCommand : IRequest
 {
+    public int Id { get; set; }
     public string FlightNumber { get; set; } = default!;
     public string Departure { get; set; } = default!;
     public string Arrival { get; set; } = default!;
