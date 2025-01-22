@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Reserverly.Application.Flights.Commands.CreateFlight;
 using Reserverly.Application.Flights.Commands.DeleteFlight;
@@ -10,6 +11,7 @@ using Reserverly.Application.Flights.Queries.GetFlightById;
 namespace Reservely.API.Controllers;
 
 [ApiController]
+[Authorize(Roles = "Admin")]
 [Route("api/flights")]
 public class FlightController(IMediator mediator) : ControllerBase
 {
@@ -21,6 +23,7 @@ public class FlightController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [AllowAnonymous]
     public async Task<ActionResult<FlightDto?>> GetById([FromRoute] int id)
     {
         var restaurant = await mediator.Send(new GetFlightByIdQuery(id));
@@ -28,6 +31,7 @@ public class FlightController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<FlightDto>>> GetAll()
     {
         var flights = await mediator.Send(new GetAllFlightsQuery());

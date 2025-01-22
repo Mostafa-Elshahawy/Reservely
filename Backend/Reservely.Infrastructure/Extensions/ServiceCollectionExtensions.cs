@@ -4,7 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Reservely.Infrastructure.ApplicationContext;
 using Reservely.Infrastructure.Repositories;
+using Reservely.Infrastructure.Seeders;
+using Reservely.Infrastructure.Services;
 using Reserverly.Domain.Entities;
+using Reserverly.Domain.Interfaces;
 using Reserverly.Domain.Repositories;
 
 
@@ -23,6 +26,8 @@ public static class ServiceCollectionExtensions
              .AddRoles<IdentityRole>()
              .AddEntityFrameworkStores<ReservelyDBContext>();
 
+        services.AddScoped<IApplicationSeedingService, ApplicationSeedingService>();
         services.AddScoped<IFlightsRepository, FlightsRepository>();
+        services.AddScoped<IFlightAuthorizationService, FlightAuthorizationService>();
     }
 }

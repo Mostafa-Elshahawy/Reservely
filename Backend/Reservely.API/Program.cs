@@ -1,6 +1,7 @@
 using Reservely.API.Extensions;
 using Reservely.API.Middlewares;
 using Reservely.Infrastructure.Extensions;
+using Reservely.Infrastructure.Seeders;
 using Reserverly.Application.Extensions;
 using Reserverly.Domain.Entities;
 using Serilog;
@@ -9,7 +10,7 @@ namespace Reservely.API;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,11 @@ public class Program
         builder.Services.AddInfrastructure(builder.Configuration);
 
         var app = builder.Build();
+
+        var scope = app.Services.CreateScope();
+        var seeder = scope.ServiceProvider.GetRequiredService<IApplicationSeedingService>();
+
+        await seeder.Seed();
 
         app.UseMiddleware<ErrorHandlingMiddleware>();
 
