@@ -24,16 +24,23 @@ internal class ApplicationSeedingService(ReservelyDBContext dbContext) : IApplic
                 await dbContext.SaveChangesAsync();
             }
 
-            if (!dbContext.Users.Any())
+            if (!dbContext.Users.Any(u => u.UserName == "admin"))
             {
                 var adminRole = await dbContext.Roles.FirstOrDefaultAsync(r => r.Name == UserRoles.Admin);
-                if (adminRole == null)
+
+                var adminUser = SeedAdminUser();
+                await dbContext.Users.AddAsync(adminUser);
+                await dbContext.SaveChangesAsync();
+
+                var userRole = new IdentityUserRole<string>
                 {
-                    var adminUser = SeedAdminUser();
-                    await dbContext.Users.AddAsync(adminUser);
-                    await dbContext.SaveChangesAsync();
-                }
+                    UserId = adminUser.Id,
+                    RoleId = adminRole.Id
+                };
+                await dbContext.UserRoles.AddAsync(userRole);
+                await dbContext.SaveChangesAsync();
             }
+
 
             if (!dbContext.FlightClasses.Any())
             {
@@ -87,8 +94,8 @@ internal class ApplicationSeedingService(ReservelyDBContext dbContext) : IApplic
             EmailConfirmed = true,
             SecurityStamp = Guid.NewGuid().ToString("D")
         };
-
         adminUser.PasswordHash = passwordHasher.HashPassword(adminUser, "Admin@123");
+
         return adminUser;
     }
 
