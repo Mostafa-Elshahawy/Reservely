@@ -7,8 +7,8 @@ using Reserverly.Domain.Repositories;
 
 namespace Reservely.Infrastructure.Services;
 
-public class FlightAuthorizationService(ILogger<FlightAuthorizationService> logger, IFlightsRepository flightsRepository,
-    IUserContext userContext) : IFlightAuthorizationService
+public class FlightAuthorizationService(ILogger<FlightAuthorizationService> logger,
+                                         IUserContext userContext) : IFlightAuthorizationService
 {
     public bool Authorize(Flight flight, ResourceOperation resourceOperation)
     {

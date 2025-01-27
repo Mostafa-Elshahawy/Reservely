@@ -108,6 +108,7 @@ internal class ApplicationSeedingService(ReservelyDBContext dbContext) : IApplic
         {
             Airline = "Egypt Air",
             FlightNumber = "EG100",
+            Status = FlightStatus.Scheduled,
             DepartureLounge = 1,
             ArrivalLounge = 3,
             DepartureTime = DateTime.UtcNow.AddDays(7).AddHours(10),
@@ -115,13 +116,12 @@ internal class ApplicationSeedingService(ReservelyDBContext dbContext) : IApplic
             AvailableSeats = 100,
             DepartureAirportId = 1,
             ArrivalAirportId = 2,
-            DepartureGate = 10,
-            ArrivalGate = 15,
         },
         new Flight
         {
             Airline = "Nile Air",
             FlightNumber = "NI101",
+            Status = FlightStatus.Delayed,
             DepartureLounge = 1,
             ArrivalLounge = 3,
             DepartureTime = DateTime.UtcNow.AddDays(7).AddHours(13),
@@ -129,13 +129,13 @@ internal class ApplicationSeedingService(ReservelyDBContext dbContext) : IApplic
             AvailableSeats = 97,
             DepartureAirportId = 1,
             ArrivalAirportId = 3,
-            DepartureGate = 12,
-            ArrivalGate = 18,
+
         },
         new Flight
         {
             Airline = "Air Cairo",
             FlightNumber = "AC102",
+            Status = FlightStatus.Scheduled,
             DepartureLounge = 1,
             ArrivalLounge = 3,
             DepartureTime = DateTime.UtcNow.AddDays(7).AddHours(16),
@@ -143,27 +143,25 @@ internal class ApplicationSeedingService(ReservelyDBContext dbContext) : IApplic
             AvailableSeats = 94,
             DepartureAirportId = 1,
             ArrivalAirportId = 4,
-            DepartureGate = 14,
-            ArrivalGate = 20,
         },
         new Flight
         {
             Airline = "Fly Dubai",
             FlightNumber = "FL103",
+            Status = FlightStatus.InFlight,
             DepartureLounge = 1,
             ArrivalLounge = 3,
-            DepartureTime = DateTime.UtcNow.AddDays(7).AddHours(19),
-            ArrivalTime = DateTime.UtcNow.AddDays(7).AddHours(23),
+            DepartureTime = DateTime.UtcNow.AddHours(-1),
+            ArrivalTime = DateTime.UtcNow.AddHours(3),
             AvailableSeats = 91,
             DepartureAirportId = 1,
             ArrivalAirportId = 5,
-            DepartureGate = 10,
-            ArrivalGate = 15,
         },
         new Flight
         {
             Airline = "Qatar Airways",
             FlightNumber = "QA104",
+            Status = FlightStatus.Cancelled,
             DepartureLounge = 1,
             ArrivalLounge = 3,
             DepartureTime = DateTime.UtcNow.AddDays(8).AddHours(10),
@@ -171,8 +169,6 @@ internal class ApplicationSeedingService(ReservelyDBContext dbContext) : IApplic
             AvailableSeats = 88,
             DepartureAirportId = 1,
             ArrivalAirportId = 6,
-            DepartureGate = 11,
-            ArrivalGate = 16,
         },
     };
 

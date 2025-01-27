@@ -32,9 +32,9 @@ public class FlightController(IMediator mediator) : ControllerBase
 
     [HttpGet]
     [AllowAnonymous]
-    public async Task<ActionResult<IEnumerable<FlightDto>>> GetAll()
+    public async Task<ActionResult<IEnumerable<FlightDto>>> GetAll([FromQuery] GetAllFlightsQuery query)
     {
-        var flights = await mediator.Send(new GetAllFlightsQuery());
+        var flights = await mediator.Send(query);
         return Ok(flights);
     }
 

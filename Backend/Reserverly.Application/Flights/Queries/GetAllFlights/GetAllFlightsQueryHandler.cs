@@ -13,8 +13,14 @@ public class GetAllFlightsQueryHandler(IFlightsRepository flightsRepository, IMa
     public async Task<PagedResult<FlightDto>> Handle(GetAllFlightsQuery request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Getting all flights");
-        var flights = await flightsRepository.GetAll();
-        var flightsDto = mapper.Map<IEnumerable<FlightDto>>(flights);
-        return new PagedResult<FlightDto>(flightsDto, flightsDto.Count(), request.PageSize, request.PageNumber);
+        var (flights, totalCount) = await flightsRepository.GetAllMatching(request.SearchPhrase,
+            request.PageSize,
+            request.PageNumber,
+            request.SortBy, 
+            request.SortDirection);
+        var flightsDtos = mapper.Map<IEnumerable<FlightDto>>(flights);
+       
+        var result = new PagedResult<FlightDto>(flightsDtos, totalCount, request.PageNumber, request.PageSize);
+        return result;
     }
 }
