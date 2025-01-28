@@ -24,24 +24,6 @@ internal class ApplicationSeedingService(ReservelyDBContext dbContext) : IApplic
                 await dbContext.SaveChangesAsync();
             }
 
-            if (!dbContext.Users.Any(u => u.UserName == "admin"))
-            {
-                var adminRole = await dbContext.Roles.FirstOrDefaultAsync(r => r.Name == UserRoles.Admin);
-
-                var adminUser = SeedAdminUser();
-                await dbContext.Users.AddAsync(adminUser);
-                await dbContext.SaveChangesAsync();
-
-                var userRole = new IdentityUserRole<string>
-                {
-                    UserId = adminUser.Id,
-                    RoleId = adminRole.Id
-                };
-                await dbContext.UserRoles.AddAsync(userRole);
-                await dbContext.SaveChangesAsync();
-            }
-
-
             if (!dbContext.FlightClasses.Any())
             {
                 var flightClasses = SeedFlightClasses();
@@ -81,24 +63,6 @@ internal class ApplicationSeedingService(ReservelyDBContext dbContext) : IApplic
 
         return roles;
     }
-
-    private User SeedAdminUser()
-    {
-        var passwordHasher = new PasswordHasher<User>();
-        var adminUser = new User
-        {
-            UserName = "admin",
-            NormalizedUserName = "ADMIN",
-            Email = "admin@admin.com",
-            NormalizedEmail = "ADMIN@ADMIN.COM",
-            EmailConfirmed = true,
-            SecurityStamp = Guid.NewGuid().ToString("D")
-        };
-        adminUser.PasswordHash = passwordHasher.HashPassword(adminUser, "Admin@123");
-
-        return adminUser;
-    }
-
 
     private IEnumerable<Flight> SeedFlights()
     {

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Reserverly.Application.Flights.Commands.CreateFlight;
+using Reserverly.Application.Flights.Commands.UpdateFlight;
 using Reserverly.Domain.Entities;
 
 namespace Reserverly.Application.Flights.Dtos;
@@ -23,5 +24,7 @@ public class FlightProfile : Profile
                 opt.MapFrom(src => src.ArrivalAirport == null ? null : src.ArrivalAirport.Country));
 
         CreateMap<CreateFlightCommand, Flight>();
+
+        CreateMap<UpdateFlightCommand, Flight>();
     }
 }

@@ -16,7 +16,7 @@ namespace Reservely.API.Controllers;
 public class FlightController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
-    public async Task<IActionResult> CreateFlight(CreateFlightCommand command)
+    public async Task<IActionResult> Create(CreateFlightCommand command)
     {
         int id = await mediator.Send(command);
         return CreatedAtAction(nameof(GetById), new { id }, null);

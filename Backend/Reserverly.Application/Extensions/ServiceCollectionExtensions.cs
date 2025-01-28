@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.Extensions.DependencyInjection;
 using Reserverly.Application.Users;
 
 
@@ -11,6 +13,8 @@ public static class ServiceCollectionExtensions
         var applicationAssembly = typeof(ServiceCollectionExtensions).Assembly;
 
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(applicationAssembly));
+
+        services.AddValidatorsFromAssembly(applicationAssembly).AddFluentValidationAutoValidation();
 
         services.AddAutoMapper(applicationAssembly);
 

@@ -1,5 +1,4 @@
-﻿
-using Reserverly.Domain.Exceptions;
+﻿using Reserverly.Domain.Exceptions;
 
 namespace Reservely.API.Middlewares;
 
@@ -17,7 +16,13 @@ public class ErrorHandlingMiddleware(ILogger<ErrorHandlingMiddleware> logger) : 
             await context.Response.WriteAsJsonAsync(new { message = notFound.Message });
             logger.LogWarning(notFound, notFound.Message);
         }
-        catch(Exception ex)
+        catch(ForbidenException forbidenException)
+        {
+            context.Response.StatusCode = 403;
+            await context.Response.WriteAsJsonAsync(new { message = forbidenException.Message });
+            logger.LogWarning(forbidenException, forbidenException.Message);
+        }
+        catch (Exception ex)
         {
             logger.LogError(ex, ex.Message);
             context.Response.StatusCode = 500;
