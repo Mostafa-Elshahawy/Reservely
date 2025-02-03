@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Reservely.Infrastructure.ApplicationContext;
 
@@ -11,9 +12,11 @@ using Reservely.Infrastructure.ApplicationContext;
 namespace Reservely.Infrastructure.Migrations
 {
     [DbContext(typeof(ReservelyDBContext))]
-    partial class ReservelyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250202150157_updatedFlightClass")]
+    partial class updatedFlightClass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -210,6 +213,9 @@ namespace Reservely.Infrastructure.Migrations
                     b.Property<DateTime>("ArrivalTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("ClassPricingId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -221,9 +227,6 @@ namespace Reservely.Infrastructure.Migrations
 
                     b.Property<DateTime>("DepartureTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("FlightClassId")
-                        .HasColumnType("int");
 
                     b.Property<string>("FlightNumber")
                         .IsRequired()
@@ -458,7 +461,7 @@ namespace Reservely.Infrastructure.Migrations
             modelBuilder.Entity("Reserverly.Domain.Entities.FlightClass", b =>
                 {
                     b.HasOne("Reserverly.Domain.Entities.Flight", "Flight")
-                        .WithMany("FlightClasses")
+                        .WithMany("FlightClass")
                         .HasForeignKey("FlightId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -487,7 +490,7 @@ namespace Reservely.Infrastructure.Migrations
 
             modelBuilder.Entity("Reserverly.Domain.Entities.Flight", b =>
                 {
-                    b.Navigation("FlightClasses");
+                    b.Navigation("FlightClass");
                 });
 
             modelBuilder.Entity("Reserverly.Domain.Entities.User", b =>

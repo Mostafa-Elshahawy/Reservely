@@ -11,6 +11,5 @@ internal class ReservelyDBContext(DbContextOptions<ReservelyDBContext> options) 
     internal DbSet<Flight> Flights { get; set; }
     internal DbSet<FlightClass> FlightClasses { get; set; }
     internal DbSet<Airport> Airports { get; set; }
-    internal DbSet<FlightClassPricing> FlightClassPricing { get; set; }
 }
 

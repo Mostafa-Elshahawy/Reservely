@@ -24,24 +24,10 @@ internal class ApplicationSeedingService(ReservelyDBContext dbContext) : IApplic
                 await dbContext.SaveChangesAsync();
             }
 
-            if (!dbContext.FlightClasses.Any())
-            {
-                var flightClasses = SeedFlightClasses();
-                await dbContext.FlightClasses.AddRangeAsync(flightClasses);
-                await dbContext.SaveChangesAsync();
-            }
-
             if (!dbContext.Airports.Any())
             {
                 var airports = SeedAirports();
                 await dbContext.Airports.AddRangeAsync(airports);
-                await dbContext.SaveChangesAsync();
-            }
-
-            if (!dbContext.Flights.Any())
-            {
-                var flights = SeedFlights();
-                await dbContext.Flights.AddRangeAsync(flights);
                 await dbContext.SaveChangesAsync();
             }
         }
@@ -62,91 +48,6 @@ internal class ApplicationSeedingService(ReservelyDBContext dbContext) : IApplic
     };
 
         return roles;
-    }
-
-    private IEnumerable<Flight> SeedFlights()
-    {
-        var flights = new List<Flight>
-    {
-        new Flight
-        {
-            Airline = "Egypt Air",
-            FlightNumber = "EG100",
-            Status = FlightStatus.Scheduled,
-            DepartureLounge = 1,
-            ArrivalLounge = 3,
-            DepartureTime = DateTime.UtcNow.AddDays(7).AddHours(10),
-            ArrivalTime = DateTime.UtcNow.AddDays(7).AddHours(14),
-            AvailableSeats = 100,
-            DepartureAirportId = 1,
-            ArrivalAirportId = 2,
-        },
-        new Flight
-        {
-            Airline = "Nile Air",
-            FlightNumber = "NI101",
-            Status = FlightStatus.Delayed,
-            DepartureLounge = 1,
-            ArrivalLounge = 3,
-            DepartureTime = DateTime.UtcNow.AddDays(7).AddHours(13),
-            ArrivalTime = DateTime.UtcNow.AddDays(7).AddHours(17),
-            AvailableSeats = 97,
-            DepartureAirportId = 1,
-            ArrivalAirportId = 3,
-
-        },
-        new Flight
-        {
-            Airline = "Air Cairo",
-            FlightNumber = "AC102",
-            Status = FlightStatus.Scheduled,
-            DepartureLounge = 1,
-            ArrivalLounge = 3,
-            DepartureTime = DateTime.UtcNow.AddDays(7).AddHours(16),
-            ArrivalTime = DateTime.UtcNow.AddDays(7).AddHours(20),
-            AvailableSeats = 94,
-            DepartureAirportId = 1,
-            ArrivalAirportId = 4,
-        },
-        new Flight
-        {
-            Airline = "Fly Dubai",
-            FlightNumber = "FL103",
-            Status = FlightStatus.InFlight,
-            DepartureLounge = 1,
-            ArrivalLounge = 3,
-            DepartureTime = DateTime.UtcNow.AddHours(-1),
-            ArrivalTime = DateTime.UtcNow.AddHours(3),
-            AvailableSeats = 91,
-            DepartureAirportId = 1,
-            ArrivalAirportId = 5,
-        },
-        new Flight
-        {
-            Airline = "Qatar Airways",
-            FlightNumber = "QA104",
-            Status = FlightStatus.Cancelled,
-            DepartureLounge = 1,
-            ArrivalLounge = 3,
-            DepartureTime = DateTime.UtcNow.AddDays(8).AddHours(10),
-            ArrivalTime = DateTime.UtcNow.AddDays(8).AddHours(14),
-            AvailableSeats = 88,
-            DepartureAirportId = 1,
-            ArrivalAirportId = 6,
-        },
-    };
-
-        return flights;
-    }
-
-    private IEnumerable<FlightClass> SeedFlightClasses()
-    {
-        return new List<FlightClass>
-        {
-        new FlightClass { Name = "Economy" },
-        new FlightClass { Name = "Business" },
-        new FlightClass { Name = "First Class" }
-        };
     }
 
     private IEnumerable<Airport> SeedAirports()

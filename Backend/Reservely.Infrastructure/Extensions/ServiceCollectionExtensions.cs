@@ -19,8 +19,7 @@ public static class ServiceCollectionExtensions
     {
         var connectionString = configuration.GetConnectionString("ReservelyDB");
         services.AddDbContext<ReservelyDBContext>(options =>
-            options.UseSqlServer(connectionString)
-                .EnableSensitiveDataLogging());
+            options.UseSqlServer(connectionString));
 
         services.AddIdentityApiEndpoints<User>()
              .AddRoles<IdentityRole>()

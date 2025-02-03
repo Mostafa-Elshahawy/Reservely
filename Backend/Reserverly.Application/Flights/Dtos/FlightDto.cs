@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using Reserverly.Domain.Entities;
+using System.Text.Json.Serialization;
 
 namespace Reserverly.Application.Flights.Dtos;
 
@@ -14,7 +15,6 @@ public class FlightDto
 
     [JsonPropertyName("duration")]
     public string FormattedDuration => $"{Duration.Hours:D2}:{Duration.Minutes:D2}";
-    public int AvailableSeats { get; set; }
     public int DepartureLounge { get; set; } = default!;
     public int ArrivalLounge { get; set; } = default!;
     public DateTime DepartureTime { get; set; }
@@ -25,7 +25,7 @@ public class FlightDto
     public string DepartureCountry { get; set; } = default!;
     public string ArrivalCity { get; set; } = default!;
     public string ArrivalCountry { get; set; } = default!;
-    public int ClassPricingId { get; set; }
+    public List<FlightClassDto> FlightClasses { get; set; } = [];
     public DateTime CreatedAt { get; set; } 
     public DateTime? UpdatedAt { get; set; }
 }

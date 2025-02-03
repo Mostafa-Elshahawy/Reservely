@@ -16,17 +16,20 @@ internal class FlightsRepository(ReservelyDBContext dbContext) : IFlightsReposit
         return flight.Id;
     }
 
-    public async Task<Flight?> GetById(int id) => await dbContext.Flights
+    public async Task<Flight?> GetById(int id)
+    {
+       return await dbContext.Flights
                  .Include(f => f.DepartureAirport)
                  .Include(f => f.ArrivalAirport)
-                 .Include(f => f.ClassPricing)
+                 .Include(f => f.FlightClasses)
                  .FirstOrDefaultAsync(f => f.Id == id);
+    }
 
     public async Task<IEnumerable<Flight>> GetAll()
     {
-        return await dbContext.Flights.Include(f => f.DepartureAirport).Include(f => f.ArrivalAirport)
-            .Include(f => f.ClassPricing).Include(f => f.Status)
-            .ToListAsync();
+        return await dbContext.Flights.Include(f => f.DepartureAirport)
+                                      .Include(f => f.ArrivalAirport)
+                                      .Include(f => f.FlightClasses).ToListAsync();
     }
 
     public async Task Update(Flight flight)
@@ -48,7 +51,6 @@ internal class FlightsRepository(ReservelyDBContext dbContext) : IFlightsReposit
         var query = dbContext.Flights
       .Include(f => f.DepartureAirport)
       .Include(f => f.ArrivalAirport)
-      .Include(f => f.ClassPricing)
       .Where(f => searchPhraseLower == null ||
          (f.FlightNumber.ToLower().Contains(searchPhraseLower) ||
           f.Airline.ToLower().Contains(searchPhraseLower) ||
