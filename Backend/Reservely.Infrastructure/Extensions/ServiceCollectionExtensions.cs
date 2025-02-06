@@ -26,7 +26,9 @@ public static class ServiceCollectionExtensions
              .AddEntityFrameworkStores<ReservelyDBContext>();
 
         services.AddScoped<IApplicationSeedingService, ApplicationSeedingService>();
-        services.AddScoped<IFlightsRepository, FlightsRepository>();
+        services.AddScoped<IFlightRepository, FlightRepository>();
+        services.AddScoped<IReservationRepository, ReservationRepository>();
         services.AddScoped<IFlightAuthorizationService, FlightAuthorizationService>();
+        services.AddScoped<IReservationAuthorizationService, ReservationAuthorizationService>();
     }
 }

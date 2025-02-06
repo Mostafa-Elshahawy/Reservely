@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace Reservely.Infrastructure.Repositories;
 
-internal class FlightsRepository(ReservelyDBContext dbContext) : IFlightsRepository
+internal class FlightRepository(ReservelyDBContext dbContext) : IFlightRepository
 {
     public async Task<int> Create(Flight flight)
     {

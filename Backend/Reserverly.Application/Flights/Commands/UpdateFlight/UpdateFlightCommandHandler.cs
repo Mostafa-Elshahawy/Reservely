@@ -9,7 +9,7 @@ using Reserverly.Domain.Repositories;
 
 namespace Reserverly.Application.Flights.Commands.UpdateFlight;
 
-public class UpdateFlightCommandHandler(IFlightsRepository flightsRepository, IMapper mapper, ILogger<UpdateFlightCommandHandler> logger,
+public class UpdateFlightCommandHandler(IFlightRepository flightsRepository, IMapper mapper, ILogger<UpdateFlightCommandHandler> logger,
                 IFlightAuthorizationService flightAuthorizationService) : IRequestHandler<UpdateFlightCommand>
 {
     public async Task Handle(UpdateFlightCommand request, CancellationToken cancellationToken)

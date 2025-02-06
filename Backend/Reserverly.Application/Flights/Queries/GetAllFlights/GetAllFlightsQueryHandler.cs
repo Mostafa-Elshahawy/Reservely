@@ -7,7 +7,8 @@ using Reserverly.Domain.Repositories;
 
 namespace Reserverly.Application.Flights.Queries.GetAllFlights;
 
-public class GetAllFlightsQueryHandler(IFlightsRepository flightsRepository, IMapper mapper, ILogger<GetAllFlightsQueryHandler> logger) : IRequestHandler<GetAllFlightsQuery, PagedResult<FlightDto>>
+public class GetAllFlightsQueryHandler(IFlightRepository flightsRepository, IMapper mapper, ILogger<GetAllFlightsQueryHandler> logger)
+                                : IRequestHandler<GetAllFlightsQuery, PagedResult<FlightDto>>
 {
 
     public async Task<PagedResult<FlightDto>> Handle(GetAllFlightsQuery request, CancellationToken cancellationToken)

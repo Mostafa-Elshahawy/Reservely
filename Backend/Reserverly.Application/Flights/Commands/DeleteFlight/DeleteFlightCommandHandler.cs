@@ -8,7 +8,7 @@ using Reserverly.Domain.Repositories;
 
 namespace Reserverly.Application.Flights.Commands.DeleteFlight;
 
-public class DeleteFlightCommandHandler(IFlightsRepository flightsRepository, ILogger<DeleteFlightCommandHandler> logger,
+public class DeleteFlightCommandHandler(IFlightRepository flightsRepository, ILogger<DeleteFlightCommandHandler> logger,
                     IFlightAuthorizationService flightAuthorizationService) : IRequestHandler<DeleteFlightCommand>
 {
     public async Task Handle(DeleteFlightCommand request, CancellationToken cancellationToken)

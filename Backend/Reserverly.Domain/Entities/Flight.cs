@@ -19,7 +19,6 @@ public class Flight
     public string DepartureCountry => DepartureAirport.Country;
     public string ArrivalCity => ArrivalAirport.City;
     public string ArrivalCountry => ArrivalAirport.Country;
-    public int FlightClassId { get; set; }
     public List<FlightClass> FlightClasses { get; set; } = new();
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; set; }

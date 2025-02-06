@@ -7,9 +7,17 @@ public class Reservation
     public User User { get; set; } = default!;
     public int NumberOfSeats { get; set; }
     public DateTime ReservationDate { get; set; }
-    public string ReservationStatus { get; set; } = "Pending";
+    public ReservationStatus ReservationStatus { get; set; }
     public int FlightId { get; set; }
     public Flight Flight { get; set; } = default!;
+    public FlightClassType FlightClassType { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow; 
     public DateTime? UpdatedAt { get; set; }
+}
+
+public enum ReservationStatus
+{
+    Pending,
+    Confirmed,
+    Cancelled
 }

@@ -3,7 +3,7 @@ using Reserverly.Domain.Entities;
 
 namespace Reserverly.Domain.Repositories;
 
-public interface IFlightsRepository
+public interface IFlightRepository
 {
     Task<int> Create(Flight flight);
     Task<Flight?> GetById(int id);

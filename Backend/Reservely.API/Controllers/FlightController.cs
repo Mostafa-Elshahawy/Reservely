@@ -12,17 +12,17 @@ namespace Reservely.API.Controllers;
 
 [ApiController]
 //[Authorize(Roles = "Admin")]
-[Route("api/flights")]
+[Route("api/[controller]")]
 public class FlightController(IMediator mediator) : ControllerBase
 {
-    [HttpPost]
+    [HttpPost("create")]
     public async Task<IActionResult> Create(CreateFlightCommand command)
     {
         int id = await mediator.Send(command);
         return CreatedAtAction(nameof(GetById), new { id }, null);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("get/{id}")]
     [AllowAnonymous]
     public async Task<ActionResult<FlightDto?>> GetById([FromRoute] int id)
     {
@@ -30,7 +30,7 @@ public class FlightController(IMediator mediator) : ControllerBase
         return Ok(restaurant);
     }
 
-    [HttpGet]
+    [HttpGet("all")]
     [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<FlightDto>>> GetAll([FromQuery] GetAllFlightsQuery query)
     {
@@ -38,14 +38,14 @@ public class FlightController(IMediator mediator) : ControllerBase
         return Ok(flights);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("delete/{id}")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {
         await mediator.Send(new DeleteFlightCommand(id));
         return NoContent();
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("update/{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, UpdateFlightCommand command)
     {
         command.Id = id;

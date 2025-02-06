@@ -2,6 +2,7 @@
 
 namespace Reserverly.Application.Reservations.Commands.UpdateReservation;
 
-public class UpdateReservationCommand : IRequest
+public class CancelReservationCommand : IRequest<int>
 {
+    public int ReservationId { get; set; }
 }
