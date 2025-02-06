@@ -33,6 +33,21 @@ public class FlightProfile : Profile
 
         CreateMap<FlightClass, FlightClassDto>();
 
-        CreateMap<UpdateFlightCommand, Flight>();
+        CreateMap<UpdateFlightCommand, Flight>()
+             .BeforeMap((src, dest) =>
+             {
+                 if (src.DepartureLounge == default) src.DepartureLounge = dest.DepartureLounge;
+                 if (src.ArrivalLounge == default) src.ArrivalLounge = dest.ArrivalLounge;
+                 if (src.DepartureTime == default) src.DepartureTime = dest.DepartureTime;
+                 if (src.ArrivalTime == default) src.ArrivalTime = dest.ArrivalTime;
+                 if (src.Status == default) src.Status = dest.Status;
+                 if (src.FlightClasses == null) src.FlightClasses = dest.FlightClasses.Select(fc => new FlightClassDto
+                 {
+                     ClassType = fc.ClassType,
+                     TotalSeats = fc.TotalSeats,
+                     AvailableSeats = fc.AvailableSeats,
+                     Price = fc.Price
+                 }).ToList();
+             });
     }
 }

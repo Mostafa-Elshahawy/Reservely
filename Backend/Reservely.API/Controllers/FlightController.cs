@@ -45,7 +45,7 @@ public class FlightController(IMediator mediator) : ControllerBase
         return NoContent();
     }
 
-    [HttpPut("update/{id}")]
+    [HttpPatch("update/{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, UpdateFlightCommand command)
     {
         command.Id = id;

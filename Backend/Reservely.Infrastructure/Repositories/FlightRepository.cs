@@ -51,6 +51,7 @@ internal class FlightRepository(ReservelyDBContext dbContext) : IFlightRepositor
         var query = dbContext.Flights
       .Include(f => f.DepartureAirport)
       .Include(f => f.ArrivalAirport)
+      .Include(f => f.FlightClasses)
       .Where(f => searchPhraseLower == null ||
          (f.FlightNumber.ToLower().Contains(searchPhraseLower) ||
           f.Airline.ToLower().Contains(searchPhraseLower) ||
