@@ -30,5 +30,6 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IReservationRepository, ReservationRepository>();
         services.AddScoped<IFlightAuthorizationService, FlightAuthorizationService>();
         services.AddScoped<IReservationAuthorizationService, ReservationAuthorizationService>();
+        services.AddScoped<ITokenServiceRepository, TokenService>();
     }
 }
