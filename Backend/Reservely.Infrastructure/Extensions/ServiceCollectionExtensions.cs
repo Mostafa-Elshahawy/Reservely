@@ -6,6 +6,7 @@ using Reservely.Infrastructure.ApplicationContext;
 using Reservely.Infrastructure.Repositories;
 using Reservely.Infrastructure.Seeders;
 using Reservely.Infrastructure.Services;
+using Reserverly.Application.Repositories;
 using Reserverly.Domain.Entities;
 using Reserverly.Domain.Interfaces;
 using Reserverly.Domain.Repositories;

@@ -1,6 +1,4 @@
-﻿using Reserverly.Application.Reservations.Dto;
-
-namespace Reserverly.Application.Users.Dtos;
+﻿namespace Reserverly.Application.Users.Dtos;
 
 public class UserDto
 {

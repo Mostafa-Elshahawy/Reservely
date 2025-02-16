@@ -2,18 +2,18 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using Reserverly.Application.Repositories;
 using Reserverly.Application.Users.Dtos;
 using Reserverly.Domain.Entities;
 using Reserverly.Domain.Exceptions;
-using Reserverly.Domain.Repositories;
-using System.Security.Claims;
+
 
 namespace Reserverly.Application.Users.Commands.LoginUser;
 
 class LoginUserCommandHandler(ILogger<LoginUserCommandHandler> logger, IMapper mapper, UserManager<User> userManager,
-    ITokenServiceRepository tokenService) : IRequestHandler<LoginUserCommand, UserDto>
+    ITokenServiceRepository tokenService) : IRequestHandler<LoginUserCommand, AuthDto>
 {
-    public async Task<UserDto> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+    public async Task<AuthDto> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation($"Logging in user with email {request.Email}");
 
@@ -29,8 +29,20 @@ class LoginUserCommandHandler(ILogger<LoginUserCommandHandler> logger, IMapper m
         }
 
         var userDto = mapper.Map<UserDto>(user);
-        await tokenService.GenerateToken(user);
+        var userRoles = await userManager.GetRolesAsync(user);
+        userDto.Roles = userRoles.ToList();
 
-        return userDto;
+        var accessToken = await tokenService.GenerateToken(user);
+        var refreshToken = tokenService.GenerateRefreshToken();
+        user.RefreshTokens.Add(refreshToken);
+        await userManager.UpdateAsync(user);
+
+        return new AuthDto
+        {
+            User = userDto,
+            Token = accessToken,
+            RefreshToken = refreshToken.Token,
+            RefreshTokenExpiration = refreshToken.ExpiresOn
+        };
     }
 }

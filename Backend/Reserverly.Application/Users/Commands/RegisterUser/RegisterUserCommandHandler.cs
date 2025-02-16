@@ -2,9 +2,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using Reserverly.Application.Repositories;
 using Reserverly.Application.Users.Dtos;
 using Reserverly.Domain.Entities;
-using Reserverly.Domain.Repositories;
 
 namespace Reserverly.Application.Users.Commands.Auth;
 public class RegisterUserCommandHandler(ITokenServiceRepository tokenService, IMapper mapper, 
@@ -33,11 +33,17 @@ public class RegisterUserCommandHandler(ITokenServiceRepository tokenService, IM
         userDto.Roles = roles.ToList();
 
         var token = await tokenService.GenerateToken(user);
+        var refreshToken = tokenService.GenerateRefreshToken();
+        user.RefreshTokens.Add(refreshToken);
+        await userManager.UpdateAsync(user);
+
 
         return new AuthDto
         {
             User = userDto,
-            Token = token
+            Token = token,
+            RefreshToken = refreshToken.Token,
+            RefreshTokenExpiration = refreshToken.ExpiresOn
         };
     }
 }
