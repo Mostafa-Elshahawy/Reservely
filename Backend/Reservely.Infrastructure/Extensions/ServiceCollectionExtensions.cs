@@ -6,6 +6,7 @@ using Reservely.Infrastructure.ApplicationContext;
 using Reservely.Infrastructure.Repositories;
 using Reservely.Infrastructure.Seeders;
 using Reservely.Infrastructure.Services;
+using Reserverly.Application.Repositories;
 using Reserverly.Domain.Entities;
 using Reserverly.Domain.Interfaces;
 using Reserverly.Domain.Repositories;
@@ -30,5 +31,6 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IReservationRepository, ReservationRepository>();
         services.AddScoped<IFlightAuthorizationService, FlightAuthorizationService>();
         services.AddScoped<IReservationAuthorizationService, ReservationAuthorizationService>();
+        services.AddScoped<ITokenServiceRepository, TokenService>();
     }
 }

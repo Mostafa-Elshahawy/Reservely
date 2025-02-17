@@ -8,7 +8,8 @@ using Reserverly.Domain.Repositories;
 
 namespace Reserverly.Application.Flights.Queries.GetFlightById;
 
-public class GetFlightByIdQueryHandler(IFlightRepository flightsRepository, IMapper mapper, ILogger<GetFlightByIdQueryHandler> logger) : IRequestHandler<GetFlightByIdQuery, FlightDto?>
+public class GetFlightByIdQueryHandler(IFlightRepository flightsRepository, IMapper mapper, ILogger<GetFlightByIdQueryHandler> logger) 
+                                        : IRequestHandler<GetFlightByIdQuery, FlightDto?>
 {
     public async Task<FlightDto?> Handle(GetFlightByIdQuery request, CancellationToken cancellationToken)
     {

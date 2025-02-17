@@ -11,7 +11,7 @@ using Reserverly.Application.Flights.Queries.GetFlightById;
 namespace Reservely.API.Controllers;
 
 [ApiController]
-//[Authorize(Roles = "Admin")]
+[Authorize(Roles = "Admin")]
 [Route("api/[controller]")]
 public class FlightController(IMediator mediator) : ControllerBase
 {

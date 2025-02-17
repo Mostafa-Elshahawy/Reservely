@@ -37,10 +37,6 @@ public class Program
             app.UseSwaggerUI(options=>options.SwaggerEndpoint("/openapi/v1.json","v1"));
         }
 
-        app.MapGroup("api/identity")
-        .WithTags("Identity")
-        .MapIdentityApi<User>();
-
         app.UseHttpsRedirection();
 
         app.UseAuthorization();

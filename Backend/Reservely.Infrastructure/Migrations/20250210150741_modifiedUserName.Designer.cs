@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Reservely.Infrastructure.ApplicationContext;
 
@@ -11,9 +12,11 @@ using Reservely.Infrastructure.ApplicationContext;
 namespace Reservely.Infrastructure.Migrations
 {
     [DbContext(typeof(ReservelyDBContext))]
-    partial class ReservelyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250210150741_modifiedUserName")]
+    partial class modifiedUserName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -277,37 +280,6 @@ namespace Reservely.Infrastructure.Migrations
                     b.ToTable("FlightClasses");
                 });
 
-            modelBuilder.Entity("Reserverly.Domain.Entities.RefreshToken", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ExpiresOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("RevokedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("RefreshTokens");
-                });
-
             modelBuilder.Entity("Reserverly.Domain.Entities.Reservation", b =>
                 {
                     b.Property<int>("Id")
@@ -504,13 +476,6 @@ namespace Reservely.Infrastructure.Migrations
                     b.Navigation("Flight");
                 });
 
-            modelBuilder.Entity("Reserverly.Domain.Entities.RefreshToken", b =>
-                {
-                    b.HasOne("Reserverly.Domain.Entities.User", null)
-                        .WithMany("RefreshTokens")
-                        .HasForeignKey("UserId");
-                });
-
             modelBuilder.Entity("Reserverly.Domain.Entities.Reservation", b =>
                 {
                     b.HasOne("Reserverly.Domain.Entities.Flight", "Flight")
@@ -537,8 +502,6 @@ namespace Reservely.Infrastructure.Migrations
 
             modelBuilder.Entity("Reserverly.Domain.Entities.User", b =>
                 {
-                    b.Navigation("RefreshTokens");
-
                     b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
