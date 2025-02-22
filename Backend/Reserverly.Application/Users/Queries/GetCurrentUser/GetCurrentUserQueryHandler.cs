@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 using Reserverly.Application.Users.Dtos;
 using Reserverly.Domain.Entities;
 using Reserverly.Domain.Exceptions;
-using Reserverly.Domain.Repositories;
 
 namespace Reserverly.Application.Users.Queries.GetCurrentUser;
 

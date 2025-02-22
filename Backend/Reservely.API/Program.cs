@@ -1,9 +1,9 @@
+using Microsoft.AspNetCore.Mvc;
 using Reservely.API.Extensions;
 using Reservely.API.Middlewares;
 using Reservely.Infrastructure.Extensions;
 using Reservely.Infrastructure.Seeders;
 using Reserverly.Application.Extensions;
-using Reserverly.Domain.Entities;
 using Serilog;
 
 namespace Reservely.API;
@@ -34,11 +34,12 @@ public class Program
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
-            app.UseSwaggerUI(options=>options.SwaggerEndpoint("/openapi/v1.json","v1"));
+            app.UseSwaggerUI(options => options.SwaggerEndpoint("/openapi/v1.json", "v1"));
         }
 
         app.UseHttpsRedirection();
 
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapControllers();

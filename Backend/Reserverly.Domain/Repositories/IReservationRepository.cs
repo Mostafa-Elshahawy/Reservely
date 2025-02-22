@@ -8,4 +8,5 @@ public interface IReservationRepository
     Task<Reservation?> GetById(int id);
     Task<IEnumerable<Reservation>> GetAll();
     Task Update(Reservation reservation);
+    Task<IEnumerable<Reservation>> GetAllByUserId();
 }

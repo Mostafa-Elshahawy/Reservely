@@ -1,4 +1,5 @@
-﻿using Reserverly.Domain.Exceptions;
+﻿using Newtonsoft.Json;
+using Reserverly.Domain.Exceptions;
 
 namespace Reservely.API.Middlewares;
 
@@ -25,8 +26,12 @@ public class ErrorHandlingMiddleware(ILogger<ErrorHandlingMiddleware> logger) : 
         catch (Exception ex)
         {
             logger.LogError(ex, ex.Message);
-            context.Response.StatusCode = 500;
-            await context.Response.WriteAsync("Internal Server Error");
+            var response = new
+            {
+                error = ex.Message,
+                statusCode = context.Response.StatusCode
+            };
+            await context.Response.WriteAsync(JsonConvert.SerializeObject(response));
         }
     }
 }
