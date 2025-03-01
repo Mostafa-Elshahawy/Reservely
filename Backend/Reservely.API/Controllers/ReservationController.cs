@@ -13,14 +13,14 @@ namespace Reservely.API.Controllers;
 public class ReservationController(IMediator mediator) : ControllerBase
 {
     [HttpGet("all")]
-    public async Task<ActionResult<IEnumerable<ReservationDto>>> GetAll()
+    public async Task<ActionResult<List<ReservationDto>>> GetAll()
     {
         var query = new GetAllReservationsQuery();
         var reservations = await mediator.Send(query);
         return Ok(reservations);
     }
 
-    [HttpGet("get/{id}")]
+    [HttpGet("{id}")]
     public async Task<ActionResult<ReservationDto?>> GetById([FromRoute] int id)
     {
         var reservation = await mediator.Send(new GetReservationByIdQuery(id));

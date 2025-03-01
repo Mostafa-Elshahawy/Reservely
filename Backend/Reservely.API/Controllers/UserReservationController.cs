@@ -29,17 +29,17 @@ public class UserReservationController(IMediator mediator) : ControllerBase
         return Ok(reservations);
     }
 
-    [HttpGet("get/{id}")]
+    [HttpGet("{id}")]
     public async Task<ActionResult<ReservationDto?>> GetById([FromRoute] int id)
     {
         var reservation = await mediator.Send(new GetReservationByIdQuery(id));
         return Ok(reservation);
     }
 
-    [HttpPut("cancel/{id}")]
-    public async Task<IActionResult> Cancel(CancelReservationCommand command)
+    [HttpPatch("cancel/{id}")]
+    public async Task<IActionResult> Cancel([FromRoute] int id)
     {
-        await mediator.Send(command);
+        await mediator.Send(new CancelReservationCommand(id));
         return NoContent();
     }
 }

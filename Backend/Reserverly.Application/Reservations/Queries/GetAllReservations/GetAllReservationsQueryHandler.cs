@@ -18,7 +18,7 @@ public class GetAllReservationsQueryHandler(ILogger<GetAllReservationsQueryHandl
             logger.LogWarning("No reservations found");
             return new List<ReservationDto>();
         }
-        var reservationsDtos = mapper.Map<IEnumerable<ReservationDto>>(reservations);
+        var reservationsDtos = mapper.Map<List<ReservationDto>>(reservations);
         return reservationsDtos.ToList();
     }
 }

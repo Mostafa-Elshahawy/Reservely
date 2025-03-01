@@ -29,7 +29,7 @@ public class ErrorHandlingMiddleware(ILogger<ErrorHandlingMiddleware> logger) : 
             var response = new
             {
                 error = ex.Message,
-                statusCode = context.Response.StatusCode
+                statusCode = context.Response.StatusCode = 500
             };
             await context.Response.WriteAsync(JsonConvert.SerializeObject(response));
         }
