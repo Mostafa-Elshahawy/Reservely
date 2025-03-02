@@ -1,5 +1,13 @@
 {
     "sidebar":{
-        "dashboard":"لوحة التحكم"
+        "dashboard":"ريسرفلي",
+        "users":"المستخدمون",
+        "flights":"الرحلات",
+        "reservations":"الحجوزات"
+    },
+    "dashboard":{
+        "total_users":"إجمالي المستخدمين",
+        "total_flights":"إجمالي الرحلات",
+        "total_bookings":"إجمالي الحجوزات"
     }
 }

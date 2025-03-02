@@ -1,4 +1,5 @@
 import {Locale, i18n} from '@/i18n/config'
+import { ThemeProvider } from '@/components/providers/theme-provider'
 import type {Metadata} from 'next'
 import {Almarai, Plus_Jakarta_Sans} from 'next/font/google'
 import '../globals.css'
@@ -33,7 +34,9 @@ export default async function RootLayout({children, params}: Readonly<Props>) {
   return (
     <html lang={lang} dir={direction} suppressHydrationWarning>
       <body className={fontClassName}>
-        {children}
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

@@ -1,5 +1,13 @@
 {
     "sidebar":{
-        "dashboard":"Dashboard"
+        "dashboard":"Reservely",
+        "users":"Users",
+        "flights":"Flights",
+        "reservations":"Reservations"
+    },
+    "dashboard":{
+        "total_users":"Total Users",
+        "total_flights":"Total Flights",
+        "total_bookings":"Total Bookings"
     }
 }
