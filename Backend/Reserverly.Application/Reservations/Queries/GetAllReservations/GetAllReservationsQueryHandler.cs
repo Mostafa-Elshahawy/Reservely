@@ -9,11 +9,16 @@ namespace Reserverly.Application.Reservations.Queries.GetAllReservations;
 public class GetAllReservationsQueryHandler(ILogger<GetAllReservationsQueryHandler> logger, IMapper mapper, IReservationRepository reservationRepository)
                     : IRequestHandler<GetAllReservationsQuery, List<ReservationDto>>
 {
-    public Task<List<ReservationDto>> Handle(GetAllReservationsQuery request, CancellationToken cancellationToken)
+    public async Task<List<ReservationDto>> Handle(GetAllReservationsQuery request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Getting all reservations");
-        var reservations = reservationRepository.GetAll();
-        var reservationsDtos = mapper.Map<IEnumerable<ReservationDto>>(reservations);
-        return Task.FromResult(reservationsDtos.ToList());
+        var reservations = await reservationRepository.GetAll();
+        if (reservations == null)
+        {
+            logger.LogWarning("No reservations found");
+            return new List<ReservationDto>();
+        }
+        var reservationsDtos = mapper.Map<List<ReservationDto>>(reservations);
+        return reservationsDtos.ToList();
     }
 }

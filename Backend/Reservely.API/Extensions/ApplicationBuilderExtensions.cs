@@ -12,15 +12,21 @@ public static class ServiceCollectionExtensions
     {
         builder.Services.AddControllers();
 
-        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCookie().AddJwtBearer(options =>
+        builder.Services.AddAuthentication(options =>
         {
-            options.IncludeErrorDetails = true;
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(options =>
+        {
             options.TokenValidationParameters = new TokenValidationParameters
             {
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Secret"]!)),
-                ClockSkew = TimeSpan.Zero,
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
                 ValidIssuer = builder.Configuration["Jwt:Issuer"],
                 ValidAudience = builder.Configuration["Jwt:Audience"],
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Secret"]!))
             };
         });
 
@@ -34,13 +40,18 @@ public static class ServiceCollectionExtensions
 
         builder.Services.AddSwaggerGen(s =>
         {
+            s.SwaggerDoc("v1", new OpenApiInfo { 
+                Title = "Reservely API",
+                Version = "v1" 
+            });
+
             var SecurityScheme = new OpenApiSecurityScheme
             {
-                Name = "JWT Authorization",
+                Name = "Authorization",
                 Description = "Enter 'Bearer {your token}'",
                 In = ParameterLocation.Header,
-                Type = SecuritySchemeType.Http,
-                Scheme = JwtBearerDefaults.AuthenticationScheme,
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer",
                 BearerFormat = "JWT"
             };
 
@@ -54,10 +65,10 @@ public static class ServiceCollectionExtensions
                         Reference = new OpenApiReference
                         {
                             Type = ReferenceType.SecurityScheme,
-                            Id = JwtBearerDefaults.AuthenticationScheme
+                            Id = "Bearer"
                         }
                     },
-                    []
+                   new string[] { }
             }
             };
 

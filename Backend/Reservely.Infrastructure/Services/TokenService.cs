@@ -29,7 +29,7 @@ public class TokenService(IConfiguration configuration, UserManager<User> userMa
 
         var claims = new List<Claim>
         {
-            new Claim(JwtRegisteredClaimNames.Sub, user.UserName!),
+            new Claim(JwtRegisteredClaimNames.Sub, user.Id),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim(JwtRegisteredClaimNames.Email, user.Email!),
             new Claim("uid", user.Id)
@@ -61,7 +61,7 @@ public class TokenService(IConfiguration configuration, UserManager<User> userMa
 
         var refreshToken = user.RefreshTokens.Single(t => t.Token == token);
 
-        if (!refreshToken.IsActive)
+        if (!refreshToken.IsActive || refreshToken.ExpiresOn <= DateTime.UtcNow)
         {
             throw new UnauthorizedAccessException("Invalid refresh token");
         }
