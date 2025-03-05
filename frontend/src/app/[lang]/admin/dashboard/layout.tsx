@@ -2,6 +2,7 @@ import {Locale, i18n} from '@/i18n/config'
 import type {Metadata} from 'next'
 import {Almarai, Plus_Jakarta_Sans} from 'next/font/google'
 import '@/app/globals.css'
+import Sidebar from '@/components/dashboard/sidebar'
 
 const font = Plus_Jakarta_Sans({
   subsets: ['latin'],

@@ -1,6 +1,6 @@
 'use client'
 import {useState, useEffect} from 'react'
-import Link from 'next/link' 
+import { useRouter } from 'next/navigation'
 import { useDictionary } from '@/i18n/context'
 import { Moon, Sun, Languages, Menu, Plane, Users, TicketsPlane } from 'lucide-react'
 import { useTheme } from 'next-themes'
@@ -15,6 +15,7 @@ type NavLink = {
 export default function Sidebar(){
     const [isExpanded, setIsExpanded] = useState(false)
     const dictionary = useDictionary()
+    const router = useRouter()
     const { setTheme , theme} = useTheme()
     const toggleTheme = ()=>{
         setTheme(theme === 'dark' ? 'light' : 'dark')
@@ -42,7 +43,11 @@ export default function Sidebar(){
                     )}
                 </div>
                 <ul className="flex flex-col space-y-2 p-4 border-5">
-                    <Button className='flex items-center hover:bg-gray-100 dark:hover:bg-indigo-800 p-2 rounded-lg bg-indigo-800 dark:bg-gray-100 text-white hover:text-indigo-800 dark:text-indigo-800 dark:hover:text-gray-100'>{isExpanded ? 
+                    <Button
+                        onClick={()=>router.push('/admin/dashboard/flights')}
+                        className='flex items-center hover:bg-gray-100 dark:hover:bg-indigo-800 p-2 rounded-lg bg-indigo-800 dark:bg-gray-100 text-white hover:text-indigo-800 dark:text-indigo-800 dark:hover:text-gray-100'
+                    >
+                    {isExpanded ? 
                         <>  
                             <Plane size={24} />
                             {dictionary.sidebar.flights}

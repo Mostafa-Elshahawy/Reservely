@@ -1,14 +1,22 @@
 import {Dictionary} from '@/i18n'
 import withPageDictionary from '@/i18n/hoc'
-import DashboardBarChart from '@/components/dashboard/dashboard-barchart'
 import Sidebar from '@/components/dashboard/sidebar'
-import StatisticCard from '@/components/dashboard/statisic-card'
+import DataTable from '@/components/dashboard/data-table'
+import { columns, User } from '@/components/dashboard/columns/users-columns'
+import { getUsers } from '@/data/actions/userActions'
+import { useQuery } from '@/hooks/useQuery'
 
 interface Props {
     dictionary:Dictionary
 }
 
 function Page({dictionary}:Props){
+
+    const {data:usersData, isLoading:usersLoading, error:usersError} = useQuery({
+        queryKey: 'users',
+        queryFn: getUsers
+    })
+
     return (
        <>
        <section className='flex items-center'>
@@ -16,13 +24,7 @@ function Page({dictionary}:Props){
             <Sidebar />
         </aside>
         <div>
-            <div className='flex justify-between'>
-                <StatisticCard 
-                    text={dictionary.dashboard.total_users}
-                    value={100}         
-                    variant='primary' 
-                />
-            </div>
+            <DataTable columns={columns} data={usersData as User[]} />
         </div>
         </section>
        </>
