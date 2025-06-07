@@ -21,9 +21,9 @@ public class ReservationController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<ReservationDto?>> GetById([FromRoute] int id)
+    public async Task<ActionResult<ReservationDto?>> GetById([FromRoute] int reservationId, [FromRoute] string userId)
     {
-        var reservation = await mediator.Send(new GetReservationByIdQuery(id));
+        var reservation = await mediator.Send(new GetReservationByIdQuery(reservationId, userId));
         return Ok(reservation);
     }
 }

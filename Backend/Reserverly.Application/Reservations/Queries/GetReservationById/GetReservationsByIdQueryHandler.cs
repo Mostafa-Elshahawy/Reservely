@@ -13,8 +13,8 @@ public class GetReservationsByIdQueryHandler(ILogger<GetReservationsByIdQueryHan
 {
     public async Task<ReservationDto> Handle(GetReservationByIdQuery request, CancellationToken cancellationToken)
     {
-        logger.LogInformation($"Getting reservation with id {request.Id}");
-        var reservation = await reservationRepository.GetById(request.Id) ?? throw new NotFoundException(nameof(Reservation),request.Id.ToString()) ;
+        logger.LogInformation($"Getting reservation with id {request.ReservationId}");
+        var reservation = await reservationRepository.GetById(request.ReservationId) ?? throw new NotFoundException(nameof(Reservation),request.ReservationId.ToString()) ;
         var reservationDto = mapper.Map<ReservationDto>(reservation);
         return (reservationDto);
     }

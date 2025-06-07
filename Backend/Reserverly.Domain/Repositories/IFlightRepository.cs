@@ -12,4 +12,5 @@ public interface IFlightRepository
     Task Delete(Flight flight);
     Task<(IEnumerable<Flight>,int)> GetAllMatching(string? searchPhrase, int pageSize, int pageNumber, string? sortBy, SortDirection sortDirection);
     Task SaveChanges();
+    Task<List<Flight>> SearchAvailability(string departureCountry, string arrivalCountry, string departureCity, string arrivalCity, DateTime departureDate, int passengers);
 }

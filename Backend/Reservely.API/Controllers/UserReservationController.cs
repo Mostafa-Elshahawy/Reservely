@@ -10,29 +10,30 @@ using Reserverly.Application.Reservations.Queries.GetReservationById;
 namespace Reservely.API.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/user/{userId}/[controller]")]
 [Authorize(Roles = "User")]
 public class UserReservationController(IMediator mediator) : ControllerBase
 {
     [HttpPost("create")]
-    public async Task<IActionResult> Create(CreateReservationCommand command)
+    public async Task<IActionResult> Create([FromRoute]string userId, CreateReservationCommand command)
     {
+        command.UserId = userId;
+
         int id = await mediator.Send(command);
         return CreatedAtAction(nameof(GetById), new { id }, null);
     }
 
     [HttpGet("all")]
-    public async Task<ActionResult<IEnumerable<ReservationDto>>> GetAll()
+    public async Task<ActionResult<IEnumerable<ReservationDto>>> GetAll([FromRoute]string userId)
     {
-        var query = new GetAllUserReservationsQuery();
-        var reservations = await mediator.Send(query);
+        var reservations = await mediator.Send(new GetAllUserReservationsQuery(userId));
         return Ok(reservations);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<ReservationDto?>> GetById([FromRoute] int id)
+    public async Task<ActionResult<ReservationDto?>> GetById([FromRoute] int reservationId, [FromRoute]string userId)
     {
-        var reservation = await mediator.Send(new GetReservationByIdQuery(id));
+        var reservation = await mediator.Send(new GetReservationByIdQuery(reservationId,userId));
         return Ok(reservation);
     }
 

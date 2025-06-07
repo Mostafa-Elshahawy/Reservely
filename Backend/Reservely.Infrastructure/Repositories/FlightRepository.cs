@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Reservely.Infrastructure.ApplicationContext;
+using Reserverly.Application.Flights.Dtos;
 using Reserverly.Domain.Constants;
 using Reserverly.Domain.Entities;
 using Reserverly.Domain.Repositories;
 using System.Linq.Expressions;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Reservely.Infrastructure.Repositories;
 
@@ -82,5 +84,32 @@ internal class FlightRepository(ReservelyDBContext dbContext) : IFlightRepositor
     }
 
     public Task SaveChanges() => dbContext.SaveChangesAsync();
+
+    public async Task<List<Flight>> SearchAvailability (string departureCountry, string arrivalCountry, string departureCity, string arrivalCity, DateTime departureDate, int passengers)
+    {
+        var flights = dbContext.Flights
+         .AsNoTracking()
+         .Include(f => f.FlightClasses)
+         .Include(f => f.DepartureAirport)
+         .Include(f => f.ArrivalAirport)
+         .Where(f => f.DepartureAirport.Country == departureCountry &&
+                     f.ArrivalAirport.Country == arrivalCountry &&
+                     f.FlightClasses.Any(fc => fc.AvailableSeats >= passengers))
+         .AsQueryable();
+
+
+        if (!string.IsNullOrWhiteSpace(departureCity))
+        {
+            flights = flights.Where(f => f.DepartureAirport.City == departureCity);
+        }
+        if (!string.IsNullOrWhiteSpace(arrivalCity))
+        {
+            flights = flights.Where(f => f.ArrivalAirport.City == arrivalCity);
+        }
+
+        flights = flights.Where(f => f.DepartureTime.Date == departureDate.Date);
+
+        return await flights.ToListAsync();
+    }
 }
 

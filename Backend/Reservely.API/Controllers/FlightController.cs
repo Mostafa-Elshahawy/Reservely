@@ -7,6 +7,7 @@ using Reserverly.Application.Flights.Commands.UpdateFlight;
 using Reserverly.Application.Flights.Dtos;
 using Reserverly.Application.Flights.Queries.GetAllFlights;
 using Reserverly.Application.Flights.Queries.GetFlightById;
+using Reserverly.Application.Flights.Queries.SearchAvailability;
 
 namespace Reservely.API.Controllers;
 
@@ -51,5 +52,13 @@ public class FlightController(IMediator mediator) : ControllerBase
         command.Id = id;
         await mediator.Send(command);
         return NoContent();
+    }
+
+    [HttpGet("searchAvailability")]
+    [AllowAnonymous]
+    public async Task<ActionResult<IEnumerable<FlightDto>>> Search([FromQuery] SearchAvailabilityQuery query)
+    {
+        var flights = await mediator.Send(query);
+        return Ok(flights);
     }
 }

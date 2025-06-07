@@ -19,6 +19,15 @@ public class Program
         builder.AddPresentation();
         builder.Services.AddApplication();
         builder.Services.AddInfrastructure(builder.Configuration);
+        builder.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            });
+        });
 
         var app = builder.Build();
 
@@ -39,6 +48,7 @@ public class Program
 
         app.UseHttpsRedirection();
 
+        app.UseCors();
         app.UseAuthentication();
         app.UseAuthorization();
 
