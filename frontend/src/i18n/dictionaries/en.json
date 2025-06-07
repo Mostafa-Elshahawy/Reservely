@@ -9,5 +9,93 @@
         "total_users":"Total Users",
         "total_flights":"Total Flights",
         "total_bookings":"Total Bookings"
+    },
+    "landingPage":{
+         "hero": {
+      "title": "Discover Your Next Adventure",
+      "subtitle": "Book flights to amazing destinations worldwide with the best prices and seamless experience",
+      "searchButton": "Search Flights",
+      "learnMore": "Learn More"
+    },
+    "searchForm": {
+      "title": "Find Your Perfect Flight",
+      "subtitle": "Search and compare flights from hundreds of airlines",
+      "from": "From",
+      "fromPlaceholder": "Departure city",
+      "to": "To",
+      "toPlaceholder": "Destination city",
+      "departure": "Departure",
+      "passengers": "Passengers",
+      "passenger": "Passenger",
+      "searchButton": "Search Flights"
+    },
+    "features": {
+      "title": "Why Choose Reservely?",
+      "subtitle": "Experience the difference with our premium flight booking service",
+      "secure": {
+        "title": "Secure Booking",
+        "description": "Your personal and payment information is protected with bank-level security encryption"
+      },
+      "fast": {
+        "title": "Lightning Fast",
+        "description": "Find and book your flights in minutes with our optimized search engine"
+      },
+      "payment": {
+        "title": "Flexible Payment",
+        "description": "Multiple payment options including credit cards, PayPal, and buy now pay later"
+      },
+      "support": {
+        "title": "24/7 Support",
+        "description": "Round-the-clock customer support to help you with any questions or issues"
+      },
+      "quality": {
+        "title": "Best Quality",
+        "description": "Carefully selected airlines and routes to ensure the best travel experience"
+      },
+      "global": {
+        "title": "Global Coverage",
+        "description": "Access to flights from over 600 airlines to destinations worldwide"
+      }
+    },
+    "destinations": {
+      "title": "Popular Destinations",
+      "subtitle": "Explore the world's most amazing places",
+      "from": "From",
+      "bookNow": "Book Now"
+    },
+    "testimonials": {
+      "title": "What Our Customers Say",
+      "subtitle": "Join thousands of satisfied travelers who chose Reservely",
+      "testimonial1": {
+        "content": "Reservely made booking my dream vacation so easy! The interface is intuitive and the prices are unbeatable. I found the perfect flight to Paris in just minutes.",
+        "name": "Sarah Johnson",
+        "location": "New York, USA"
+      },
+      "testimonial2": {
+        "content": "Amazing customer service! When my flight was delayed, their support team helped me reschedule immediately. I'll definitely use Reservely for all my future travels.",
+        "name": "Ahmed Hassan",
+        "location": "Dubai, UAE"
+      },
+      "testimonial3": {
+        "content": "The best flight booking experience I've ever had. Great prices, easy booking process, and excellent customer support. Highly recommended!",
+        "name": "Maria Rodriguez",
+        "location": "Barcelona, Spain"
+      }
+    },
+    "footer": {
+      "description": "Your trusted partner for seamless flight bookings and unforgettable travel experiences worldwide.",
+      "quickLinks": "Quick Links",
+      "about": "About Us",
+      "destinations": "Destinations",
+      "deals": "Deals",
+      "contact": "Contact",
+      "support": "Support",
+      "help": "Help Center",
+      "cancellation": "Cancellation Policy",
+      "refund": "Refund Policy",
+      "terms": "Terms & Conditions",
+      "contactUs": "Contact Us",
+      "rights": "All rights reserved."
+    }
     }
 }

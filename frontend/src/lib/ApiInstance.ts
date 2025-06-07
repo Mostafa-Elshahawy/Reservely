@@ -51,4 +51,4 @@ export class ApiInstance {
     }
 }
 
-export const api = new ApiInstance("http://localhost:3000/api")
+export const api = new ApiInstance("https://localhost:7211/api")

@@ -3,10 +3,27 @@
 import {ColumnDef} from '@tanstack/react-table'
 
 export type Flight = {
-    id: string 
-    amount: number 
-    status: 'pending' | 'processing' | 'success' | 'failed'
-    email: string
+    id: number
+    airline: string
+    flightNumber: string
+    status: string
+    duration: string
+    departureLounge: number
+    arrivalLounge: number
+    departureTime: Date
+    arrivalTime: Date
+    departureAirport: string
+    arrivalAirport: string
+    departureCity: string
+    departureCountry: string
+    arrivalCity: string
+    arrivalCountry: string
+    flightClasses: {
+        classType: number
+        totalSeats: number
+        availableSeats: number
+        price: number
+      }[]
 }
 
 export const columns:ColumnDef<Flight>[] = [

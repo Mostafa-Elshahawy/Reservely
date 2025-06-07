@@ -2,7 +2,7 @@
 import {api} from '@/lib/ApiInstance'
 
 export const getFlights = async ()=>{
-    const flights = await api.get("/flights")
+    const flights = await api.get("/flight/all")
     return flights
 }
 
