@@ -12,90 +12,186 @@
     },
     "landingPage":{
          "hero": {
-      "title": "Discover Your Next Adventure",
-      "subtitle": "Book flights to amazing destinations worldwide with the best prices and seamless experience",
-      "searchButton": "Search Flights",
-      "learnMore": "Learn More"
-    },
-    "searchForm": {
-      "title": "Find Your Perfect Flight",
-      "subtitle": "Search and compare flights from hundreds of airlines",
-      "from": "From",
-      "fromPlaceholder": "Departure city",
-      "to": "To",
-      "toPlaceholder": "Destination city",
-      "departure": "Departure",
-      "passengers": "Passengers",
-      "passenger": "Passenger",
-      "searchButton": "Search Flights"
-    },
-    "features": {
-      "title": "Why Choose Reservely?",
-      "subtitle": "Experience the difference with our premium flight booking service",
-      "secure": {
-        "title": "Secure Booking",
-        "description": "Your personal and payment information is protected with bank-level security encryption"
-      },
-      "fast": {
-        "title": "Lightning Fast",
-        "description": "Find and book your flights in minutes with our optimized search engine"
-      },
-      "payment": {
-        "title": "Flexible Payment",
-        "description": "Multiple payment options including credit cards, PayPal, and buy now pay later"
-      },
-      "support": {
-        "title": "24/7 Support",
-        "description": "Round-the-clock customer support to help you with any questions or issues"
-      },
-      "quality": {
-        "title": "Best Quality",
-        "description": "Carefully selected airlines and routes to ensure the best travel experience"
-      },
-      "global": {
-        "title": "Global Coverage",
-        "description": "Access to flights from over 600 airlines to destinations worldwide"
-      }
-    },
-    "destinations": {
-      "title": "Popular Destinations",
-      "subtitle": "Explore the world's most amazing places",
-      "from": "From",
-      "bookNow": "Book Now"
-    },
-    "testimonials": {
-      "title": "What Our Customers Say",
-      "subtitle": "Join thousands of satisfied travelers who chose Reservely",
-      "testimonial1": {
-        "content": "Reservely made booking my dream vacation so easy! The interface is intuitive and the prices are unbeatable. I found the perfect flight to Paris in just minutes.",
-        "name": "Sarah Johnson",
-        "location": "New York, USA"
-      },
-      "testimonial2": {
-        "content": "Amazing customer service! When my flight was delayed, their support team helped me reschedule immediately. I'll definitely use Reservely for all my future travels.",
-        "name": "Ahmed Hassan",
-        "location": "Dubai, UAE"
-      },
-      "testimonial3": {
-        "content": "The best flight booking experience I've ever had. Great prices, easy booking process, and excellent customer support. Highly recommended!",
-        "name": "Maria Rodriguez",
-        "location": "Barcelona, Spain"
-      }
-    },
-    "footer": {
-      "description": "Your trusted partner for seamless flight bookings and unforgettable travel experiences worldwide.",
-      "quickLinks": "Quick Links",
-      "about": "About Us",
+          "title": "Discover Your Next Adventure",
+          "subtitle": "Book flights to amazing destinations worldwide with the best prices and seamless experience",
+          "searchButton": "Search Flights",
+          "learnMore": "Learn More"
+        },
+        "searchForm": {
+          "title": "Find Your Perfect Flight",
+          "subtitle": "Search and compare flights from hundreds of airlines",
+          "from": "From",
+          "fromPlaceholder": "Departure city",
+          "to": "To",
+          "toPlaceholder": "Destination city",
+          "departure": "Departure",
+          "passengers": "Passengers",
+          "passenger": "Passenger",
+          "searchButton": "Search Flights"
+        },
+        "features": {
+          "title": "Why Choose Reservely?",
+          "subtitle": "Experience the difference with our premium flight booking service",
+          "secure": {
+            "title": "Secure Booking",
+            "description": "Your personal and payment information is protected with bank-level security encryption"
+          },
+          "fast": {
+            "title": "Lightning Fast",
+            "description": "Find and book your flights in minutes with our optimized search engine"
+          },
+          "payment": {
+            "title": "Flexible Payment",
+            "description": "Multiple payment options including credit cards, PayPal, and buy now pay later"
+          },
+          "support": {
+            "title": "24/7 Support",
+            "description": "Round-the-clock customer support to help you with any questions or issues"
+          },
+          "quality": {
+            "title": "Best Quality",
+            "description": "Carefully selected airlines and routes to ensure the best travel experience"
+          },
+          "global": {
+            "title": "Global Coverage",
+            "description": "Access to flights from over 600 airlines to destinations worldwide"
+          }
+        },
+        "destinations": {
+          "title": "Popular Destinations",
+          "subtitle": "Explore the world's most amazing places",
+          "from": "From",
+          "bookNow": "Book Now"
+        },
+        "testimonials": {
+          "title": "What Our Customers Say",
+          "subtitle": "Join thousands of satisfied travelers who chose Reservely",
+          "testimonial1": {
+            "content": "Reservely made booking my dream vacation so easy! The interface is intuitive and the prices are unbeatable. I found the perfect flight to Paris in just minutes.",
+            "name": "Sarah Johnson",
+            "location": "New York, USA"
+          },
+          "testimonial2": {
+            "content": "Amazing customer service! When my flight was delayed, their support team helped me reschedule immediately. I'll definitely use Reservely for all my future travels.",
+            "name": "Ahmed Hassan",
+            "location": "Dubai, UAE"
+          },
+          "testimonial3": {
+            "content": "The best flight booking experience I've ever had. Great prices, easy booking process, and excellent customer support. Highly recommended!",
+            "name": "Maria Rodriguez",
+            "location": "Barcelona, Spain"
+          }
+        },
+        "footer": {
+          "description": "Your trusted partner for seamless flight bookings and unforgettable travel experiences worldwide.",
+          "quickLinks": "Quick Links",
+          "about": "About Us",
+          "destinations": "Destinations",
+          "deals": "Deals",
+          "contact": "Contact",
+          "support": "Support",
+          "help": "Help Center",
+          "cancellation": "Cancellation Policy",
+          "refund": "Refund Policy",
+          "terms": "Terms & Conditions",
+          "contactUs": "Contact Us",
+          "rights": "All rights reserved."
+        }
+
+    
+  },
+  "navigation":{
+      "home": "Home",
       "destinations": "Destinations",
-      "deals": "Deals",
+      "about": "About",
       "contact": "Contact",
-      "support": "Support",
-      "help": "Help Center",
-      "cancellation": "Cancellation Policy",
-      "refund": "Refund Policy",
-      "terms": "Terms & Conditions",
-      "contactUs": "Contact Us",
-      "rights": "All rights reserved."
+      "bookNow": "Book Now"
+  },
+  "aboutPage":{
+      "hero": {
+        "title": "About Reservely",
+        "subtitle": "Your trusted travel partner for unforgettable journeys around the world",
+        "destinations": "Destinations Worldwide",
+        "customers": "Happy Customers",
+        "experience": "Years of Experience"
+      },
+      "story": {
+        "title": "Our Story",
+        "description1": "Founded in 2009, Reservely began as a small travel agency with a big dream: to make travel accessible, affordable, and unforgettable for everyone.",
+        "description2": "Today, we're proud to be one of the leading travel companies, serving thousands of customers worldwide with personalized travel experiences.",
+        "founded": "Founded",
+        "values": {
+          "passion": {
+            "title": "Passion for Travel",
+            "description": "We believe travel has the power to transform lives, broaden perspectives, and create lasting memories."
+          },
+          "trust": {
+            "title": "Trust & Reliability",
+            "description": "Your peace of mind is our priority. We ensure secure bookings and reliable service every step of the way."
+          },
+          "excellence": {
+            "title": "Service Excellence",
+            "description": "From planning to execution, we deliver exceptional service that exceeds your expectations."
+          }
+        }
+      },
+      "team": {
+        "title": "Meet Our Team",
+        "subtitle": "The passionate individuals behind your perfect journey",
+        "members": {
+          "ceo": "CEO & Founder",
+          "cto": "Chief Technology Officer",
+          "operations": "Head of Operations",
+          "marketing": "Marketing Director"
+        },
+        "bios": {
+          "sarah": "With 15 years in the travel industry, Sarah leads our vision of making travel dreams come true.",
+          "michael": "Michael ensures our platform delivers cutting-edge technology for seamless booking experiences.",
+          "emma": "Emma oversees all operations, ensuring every trip runs smoothly from start to finish.",
+          "david": "David crafts compelling campaigns that inspire wanderlust and connect travelers with their perfect destinations."
+        }
+      }
+    },
+  "contactPage": {
+    "hero": {
+      "title": "Get in Touch",
+      "subtitle": "Ready to plan your next adventure? We're here to help make your travel dreams come true.",
+      "info": {
+        "phone": {
+          "title": "Call Us",
+          "description": "Speak with our travel experts"
+        },
+        "email": {
+          "title": "Email Us",
+          "description": "Send us your inquiries"
+        },
+        "address": {
+          "title": "Visit Us",
+          "description": "Come to our office"
+        },
+        "hours": {
+          "title": "Business Hours",
+          "description": "We're here to help"
+        }
+      }
+    },
+    "form": {
+      "title": "Send Us a Message",
+      "subtitle": "Have a question or ready to book your next trip? Fill out the form below and we'll get back to you within 24 hours.",
+      "placeholders": {
+        "name": "Your Full Name",
+        "email": "Your Email Address",
+        "phone": "Your Phone Number",
+        "subject": "Subject",
+        "message": "Tell us about your travel plans..."
+      },
+      "submit": "Send Message",
+      "successMessage": "Thank you! Your message has been sent successfully. We'll get back to you soon.",
+      "mapPlaceholder": "Interactive Map Coming Soon",
+      "needHelp": {
+        "title": "Need Immediate Help?",
+        "description": "Our customer service team is available during business hours to assist you with any urgent travel needs."
+      }
     }
-    }
+  }
 }
